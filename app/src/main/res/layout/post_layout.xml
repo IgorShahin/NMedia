@@ -10,7 +10,6 @@
         android:id="@+id/avatar_image"
         android:layout_width="@dimen/posts_avatar_size"
         android:layout_height="@dimen/posts_avatar_size"
-        android:layout_marginBottom="@dimen/common_spacing"
         app:layout_constraintBottom_toTopOf="@id/header_barrier"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -78,17 +77,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="like_image, repost_image, view_image" />
+        app:constraint_referenced_ids="like, share, view" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/like_image"
+        android:id="@+id/like"
         android:layout_width="@dimen/posts_view_size"
         android:layout_height="@dimen/posts_view_size"
         android:layout_marginTop="@dimen/footer_spacing_top"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/footer_barrier"
-        app:srcCompat="@drawable/ic_likes_24"
+        app:srcCompat="@drawable/ic_like_24"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -97,41 +96,41 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/footer_spacing_value"
         android:text="@string/count_like"
-        app:layout_constraintBottom_toBottomOf="@id/like_image"
-        app:layout_constraintStart_toEndOf="@id/like_image"
-        app:layout_constraintTop_toTopOf="@id/like_image" />
+        app:layout_constraintBottom_toBottomOf="@id/like"
+        app:layout_constraintStart_toEndOf="@id/like"
+        app:layout_constraintTop_toTopOf="@id/like" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/repost_image"
+        android:id="@+id/share"
         android:layout_width="@dimen/posts_view_size"
         android:layout_height="@dimen/posts_view_size"
         android:layout_marginStart="@dimen/footer_spacing_components"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@id/like_image"
+        app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintStart_toEndOf="@id/count_like"
-        app:layout_constraintTop_toTopOf="@id/like_image"
+        app:layout_constraintTop_toTopOf="@id/like"
         app:srcCompat="@drawable/ic_share_24"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/count_repost"
+        android:id="@+id/count_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/footer_spacing_value"
         android:text="@string/count_repost"
-        app:layout_constraintBottom_toBottomOf="@id/repost_image"
-        app:layout_constraintStart_toEndOf="@id/repost_image"
-        app:layout_constraintTop_toTopOf="@id/repost_image" />
+        app:layout_constraintBottom_toBottomOf="@id/share"
+        app:layout_constraintStart_toEndOf="@id/share"
+        app:layout_constraintTop_toTopOf="@id/share" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/view_image"
+        android:id="@+id/view"
         android:layout_width="@dimen/posts_view_size"
         android:layout_height="@dimen/posts_view_size"
         android:layout_marginEnd="@dimen/footer_spacing_value"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@id/like_image"
+        app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintEnd_toStartOf="@id/count_view"
-        app:layout_constraintTop_toTopOf="@id/like_image"
+        app:layout_constraintTop_toTopOf="@id/like"
         app:srcCompat="@drawable/ic_visibility_24"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -142,7 +141,7 @@
         android:layout_marginStart="@dimen/footer_spacing_value"
         android:text="@string/count_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/repost_image" />
+        app:layout_constraintTop_toTopOf="@id/share" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
