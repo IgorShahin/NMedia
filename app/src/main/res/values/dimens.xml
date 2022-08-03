@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="posts_view_size">24dp</dimen>
+    <dimen name="common_spacing">20dp</dimen>
+    <dimen name="footer_spacing_top">13dp</dimen>
+    <dimen name="footer_spacing_value">8dp</dimen>
+    <dimen name="footer_spacing_components">24dp</dimen>
+    <dimen name="posts_avatar_size">48dp</dimen>
+    <dimen name="posts_option_size">24dp</dimen>
+</resources>
