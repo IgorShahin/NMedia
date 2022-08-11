@@ -7,4 +7,10 @@
     <string name="count_like" translatable="false">10</string>
     <string name="count_repost" translatable="false">5</string>
     <string name="count_view" translatable="false">5</string>
+    <string name="post_text">Post text</string>
+    <string name="menu_remove">Remove</string>
+    <string name="error_empty_content">Content cannot be empty</string>
+    <string name="menu_edit">Edit</string>
+    <string name="edit_message">Edit Message</string>
+    <string name="todo" translatable="false">TODO</string>
 </resources>

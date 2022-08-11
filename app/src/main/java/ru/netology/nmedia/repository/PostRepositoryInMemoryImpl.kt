@@ -6,10 +6,10 @@ import ru.netology.nmedia.dto.Post
 
 class PostRepositoryInMemoryImpl : IPostRepository {
 
-
+    private var nextId = 1L
     private var posts = listOf(
         Post(
-            id = 1,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по " +
                     "онлайн маркетингу. Затем появились курсы по дизайну, разработке, аналитике и" +
@@ -24,7 +24,7 @@ class PostRepositoryInMemoryImpl : IPostRepository {
             likedByMe = false
         ),
         Post(
-            id = 2,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по " +
                     "онлайн маркетингу. Затем появились курсы по дизайну, разработке, аналитике и" +
@@ -39,7 +39,7 @@ class PostRepositoryInMemoryImpl : IPostRepository {
             likedByMe = false
         ),
         Post(
-            id = 3,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по " +
                     "онлайн маркетингу. Затем появились курсы по дизайну, разработке, аналитике и" +
@@ -54,7 +54,7 @@ class PostRepositoryInMemoryImpl : IPostRepository {
             likedByMe = false
         ),
         Post(
-            id = 4,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по " +
                     "онлайн маркетингу. Затем появились курсы по дизайну, разработке, аналитике и" +
@@ -68,8 +68,8 @@ class PostRepositoryInMemoryImpl : IPostRepository {
             amountVisible = 231,
             likedByMe = false
         )
+    ).reversed()
 
-    )
     private val data = MutableLiveData(posts)
 
     override fun getAll(): LiveData<List<Post>> = data
@@ -86,6 +86,20 @@ class PostRepositoryInMemoryImpl : IPostRepository {
 
     override fun shareById(id: Long) {
         posts = posts.map { if (it.id != id) it else it.copy(amountShare = it.amountShare + 1) }
+        data.value = posts
+    }
+
+    override fun removeById(id: Long) {
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        posts = if (post.id == 0L) {
+            listOf(post.copy(id = nextId++, author = "Me", published = "Now")) + posts
+        } else {
+            posts.map { if (it.id != post.id) it else it.copy(content = post.content) }
+        }
         data.value = posts
     }
 

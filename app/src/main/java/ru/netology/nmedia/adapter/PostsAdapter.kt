@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,17 +12,20 @@ import ru.netology.nmedia.dto.Post
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-typealias LikeCallback = (Post) -> Unit
-typealias ShareCallback = (Post) -> Unit
+interface AdapterCallback {
+    fun onLike(post: Post)
+    fun onShare(post: Post)
+    fun onRemove(post: Post)
+    fun onEdit(post: Post)
+}
 
 class PostsAdapter(
-    private val likeCallback: LikeCallback,
-    private val shareCallback: ShareCallback
+    private val callback: AdapterCallback
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = PostLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, likeCallback, shareCallback)
+        return PostViewHolder(binding, callback)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -33,8 +37,7 @@ class PostsAdapter(
 
 class PostViewHolder(
     private val binding: PostLayoutBinding,
-    private val likeCallback: LikeCallback,
-    private val shareCallback: ShareCallback
+    private val callback: AdapterCallback
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
@@ -48,8 +51,21 @@ class PostViewHolder(
 
             like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
 
-            like.setOnClickListener { likeCallback(post) }
-            share.setOnClickListener { shareCallback(post) }
+            like.setOnClickListener { callback.onLike(post) }
+            share.setOnClickListener { callback.onShare(post) }
+
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.menu_post)
+                    setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.remove -> callback.onRemove(post)
+                            R.id.edit -> callback.onEdit(post)
+                        }
+                        true
+                    }
+                }.show()
+            }
         }
 
     }
@@ -66,7 +82,7 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
 }
 
-fun Long.conversion(): String = when {
+private fun Long.conversion(): String = when {
     this in 1000..9999 -> DecimalFormat("#.#K").apply { roundingMode = RoundingMode.FLOOR }
         .format(this / 1000.0)
     this in 10000..999999 -> String.format("%dK", this / 1000)
