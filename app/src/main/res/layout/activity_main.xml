@@ -28,7 +28,7 @@
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:constraint_referenced_ids="image_edit, edit_text_view, edit_message, close_edit" />
 
     <ImageView
