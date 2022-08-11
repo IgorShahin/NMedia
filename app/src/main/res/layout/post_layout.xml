@@ -13,7 +13,8 @@
         app:layout_constraintBottom_toTopOf="@id/header_barrier"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/posts_avatars" />
+        app:srcCompat="@drawable/posts_avatars"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/author"

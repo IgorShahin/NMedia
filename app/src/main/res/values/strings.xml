@@ -12,4 +12,5 @@
     <string name="error_empty_content">Content cannot be empty</string>
     <string name="menu_edit">Edit</string>
     <string name="edit_message">Edit Message</string>
+    <string name="todo" translatable="false">TODO</string>
 </resources>
