@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/footer_spacing_value"
         android:text="@string/edit_message"
-        android:textColor="@color/edit_text_view_color"
+        android:textColor="@color/edit_view_color"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/image_edit"
         app:layout_constraintTop_toBottomOf="@id/toolsTop" />
@@ -63,14 +63,14 @@
         app:layout_constraintTop_toBottomOf="@id/edit_text_view"
         tools:text="Нетология" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/close_edit"
+        style="@style/Widget.App.ButtonMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/todo"
-        android:padding="@dimen/common_spacing"
-        android:src="@drawable/ic_close_24"
+        android:checkable="true"
+        app:iconTint="?attr/colorControlNormal"
+        app:icon="@drawable/ic_close_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolsTop" />
 
