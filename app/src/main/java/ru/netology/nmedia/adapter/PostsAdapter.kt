@@ -1,5 +1,6 @@
 package ru.netology.nmedia.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.PostLayoutBinding
 import ru.netology.nmedia.dto.Post
+import java.lang.reflect.Method
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -45,11 +47,11 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             contentPosts.text = post.content
-            countLike.text = post.amountLike.conversion()
-            countShare.text = post.amountShare.conversion()
+            like.text = post.amountLike.conversion()
+            share.text = post.amountShare.conversion()
             countView.text = post.amountVisible.conversion()
 
-            like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
+            like.isChecked = post.likedByMe
 
             like.setOnClickListener { callback.onLike(post) }
             share.setOnClickListener { callback.onShare(post) }
@@ -57,12 +59,41 @@ class PostViewHolder(
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.menu_post)
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        setForceShowIcon(true)
+                    }
+
                     setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.remove -> callback.onRemove(post)
                             R.id.edit -> callback.onEdit(post)
                         }
                         true
+                    }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        setForceShowIcon(true)
+                    } else {
+                        try {
+                            val fields = javaClass.declaredFields
+                            for (field in fields) {
+                                if ("mPopup" == field.name) {
+                                    field.isAccessible = true
+                                    val menuPopupHelper = field[this]
+                                    val classPopupHelper =
+                                        Class.forName(menuPopupHelper.javaClass.name)
+                                    val setForceIcons: Method = classPopupHelper.getMethod(
+                                        "setForceShowIcon",
+                                        Boolean::class.javaPrimitiveType
+                                    )
+                                    setForceIcons.invoke(menuPopupHelper, true)
+                                    break
+                                }
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
                     }
                 }.show()
             }
