@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PostHandlerActivity">
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:hint="@string/post_text"
+        android:inputType="textMultiLine"
+        android:paddingBottom="100dp"
+        android:importantForAutofill="no" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:fabAlignmentMode="end"
+        android:backgroundTint="@color/blue_grey"
+        android:layout_gravity="bottom" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:backgroundTint="@color/blue_grey"
+        android:contentDescription="@string/todo"
+        app:tint="@color/white"
+        app:layout_anchor="@id/bottomAppBar"
+        app:borderWidth="0dp"
+        android:src="@drawable/ic_check_24"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

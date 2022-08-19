@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="edit_view_color">#64B0E5</color>
+    <color name="blue_grey">#617e8c</color>
+    <color name="blue_grey_scale">#80000000</color>
     <color name="liked_tint">#FF0000</color>
     <color name="color_normal">#757575</color>
 </resources>
