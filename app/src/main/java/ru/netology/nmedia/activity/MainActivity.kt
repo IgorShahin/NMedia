@@ -24,16 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: PostViewModel by viewModels()
 
-        val newPostContract = registerForActivityResult(PostContract()) { post ->
+        val postContract = registerForActivityResult(PostContract()) { post ->
             post?.let {
-                viewModel.changeContent(it.content)
-                viewModel.save()
-            }
-        }
-
-        val updatePostContract = registerForActivityResult(PostContract()) { post ->
-            post?.let {
-                viewModel.edit(it)
                 viewModel.changeContent(it.content)
                 viewModel.save()
             }
@@ -60,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEdit(post: Post) {
-                updatePostContract.launch(post)
+                viewModel.edit(post)
             }
 
             override fun onVideo(post: Post) {
@@ -79,8 +71,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.edited.observe(this) {
+            if (it.id != 0L) {
+                postContract.launch(it)
+            }
+        }
+
         binding.add.setOnClickListener {
-            newPostContract.launch(null)
+            postContract.launch(null)
         }
 
     }
