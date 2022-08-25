@@ -8,4 +8,7 @@
     <dimen name="posts_avatar_size">48dp</dimen>
     <dimen name="posts_option_size">24dp</dimen>
     <dimen name="edit_spacing">15dp</dimen>
+    <dimen name="video_title_size">16sp</dimen>
+    <dimen name="margin_top_title_video">12dp</dimen>
+    <dimen name="margin_bottom_title_video">20dp</dimen>
 </resources>

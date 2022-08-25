@@ -14,4 +14,8 @@
     <string name="error_empty_content">Контент не может быть пустым</string>
     <string name="menu_edit">Изменить</string>
     <string name="edit_message">Редактирование</string>
+    <string name="chooser_share_post">Поделиться постом</string>
+    <string name="edit_post">Редактировать пост</string>
+    <string name="create_post">Создать пост</string>
+    <string name="title_video">Иллюстрация в медиа. Приглашение на дизайн-лекторий</string>
 </resources>

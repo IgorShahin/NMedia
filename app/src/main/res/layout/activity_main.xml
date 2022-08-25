@@ -4,103 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/toolsTop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/post_layout" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/toolsTop"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="content, save" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="image_edit, edit_text_view, edit_message, close_edit" />
-
-    <ImageView
-        android:id="@+id/image_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/blue_grey"
         android:contentDescription="@string/todo"
-        android:padding="@dimen/edit_spacing"
-        android:src="@drawable/ic_edit_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolsTop" />
-
-    <TextView
-        android:id="@+id/edit_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/footer_spacing_value"
-        android:text="@string/edit_message"
-        android:textColor="@color/edit_view_color"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/image_edit"
-        app:layout_constraintTop_toBottomOf="@id/toolsTop" />
-
-    <TextView
-        android:id="@+id/edit_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        app:layout_constraintEnd_toStartOf="@id/close_edit"
-        app:layout_constraintStart_toEndOf="@id/image_edit"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_view"
-        tools:text="Нетология" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/close_edit"
-        style="@style/Widget.App.ButtonMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checkable="true"
-        app:iconTint="?attr/colorControlNormal"
-        app:icon="@drawable/ic_close_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolsTop" />
-
-    <EditText
-        android:id="@+id/content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/post_text"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:maxLines="6"
-        android:padding="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/save"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_edit" />
-
-    <ImageButton
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/todo"
-        android:padding="4dp"
-        android:src="@drawable/ic_save_40"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/content"
-        app:layout_constraintTop_toTopOf="@id/content"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/ic_add_24"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

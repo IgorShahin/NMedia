@@ -69,9 +69,59 @@
         android:ellipsize="end"
         android:maxLines="10"
         android:text="@string/content"
-        app:layout_constraintBottom_toTopOf="@id/footer_barrier"
+        app:layout_constraintBottom_toTopOf="@id/video"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_barrier" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="video, play, title_video" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/video_views"
+        app:layout_constraintBottom_toTopOf="@id/title_video"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content_posts" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/blue_grey_scale"
+        android:contentDescription="@string/todo"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/video"
+        app:layout_constraintEnd_toEndOf="@id/video"
+        app:layout_constraintStart_toStartOf="@id/video"
+        app:layout_constraintTop_toTopOf="@id/video"
+        app:srcCompat="@drawable/ic_play_24"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/title_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_title_video"
+        android:layout_marginBottom="@dimen/margin_bottom_title_video"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/title_video"
+        android:textColor="@color/blue_grey"
+        android:textSize="@dimen/video_title_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/footer_barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/video" />
+
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/footer_barrier"
@@ -121,9 +171,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/footer_spacing_value"
         android:text="@string/count_view"
+        app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/share"
-        app:layout_constraintBottom_toBottomOf="@id/like"/>
+        app:layout_constraintTop_toTopOf="@id/share" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
