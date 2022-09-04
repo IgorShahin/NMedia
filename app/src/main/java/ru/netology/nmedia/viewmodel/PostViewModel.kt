@@ -25,7 +25,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: IPostRepository = PostRepositoryFileImpl(application)
     val data: LiveData<List<Post>> = repository.getAll()
-    val edited = MutableLiveData(empty)
+    private val edited = MutableLiveData(empty)
 
     fun save() {
         edited.value?.let {
