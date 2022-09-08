@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
-import ru.netology.nmedia.databinding.PostLayoutBinding
+import ru.netology.nmedia.databinding.PostCardBinding
 import ru.netology.nmedia.dto.Post
 import java.lang.reflect.Method
 import java.math.RoundingMode
@@ -21,6 +21,7 @@ interface AdapterCallback {
     fun onRemove(post: Post)
     fun onEdit(post: Post)
     fun onVideo(post: Post)
+    fun onPost(post: Post)
 }
 
 class PostsAdapter(
@@ -28,7 +29,7 @@ class PostsAdapter(
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = PostLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = PostCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding, callback)
     }
 
@@ -40,7 +41,7 @@ class PostsAdapter(
 }
 
 class PostViewHolder(
-    private val binding: PostLayoutBinding,
+    private val binding: PostCardBinding,
     private val callback: AdapterCallback
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -59,6 +60,9 @@ class PostViewHolder(
             share.setOnClickListener { callback.onShare(post) }
             video.setOnClickListener { callback.onVideo(post) }
             play.setOnClickListener { callback.onVideo(post) }
+
+            root.setOnClickListener { callback.onPost(post) }
+            contentPosts.setOnClickListener { callback.onPost(post) }
 
             if (post.video != null) groupVideo.visibility = View.VISIBLE
             else groupVideo.visibility = View.GONE
@@ -120,7 +124,7 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
 }
 
-private fun Long.conversion(): String = when {
+fun Long.conversion(): String = when {
     this in 1000..9999 -> DecimalFormat("#.#K").apply { roundingMode = RoundingMode.FLOOR }
         .format(this / 1000.0)
     this in 10000..999999 -> String.format("%dK", this / 1000)
