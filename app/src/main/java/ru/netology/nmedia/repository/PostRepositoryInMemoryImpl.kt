@@ -67,7 +67,6 @@ class PostRepositoryInMemoryImpl : IPostRepository {
             amountShare = 5672,
             amountVisible = 231,
             likedByMe = false,
-            video = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
         )
     ).reversed()
 

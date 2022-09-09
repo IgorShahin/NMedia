@@ -9,9 +9,8 @@ data class Post(
     val author: String,
     var content: String,
     val published: String,
-    val amountLike: Long,
-    val amountShare: Long,
-    val amountVisible: Long,
     val likedByMe: Boolean,
-    val video: String? = null
+    val amountLike: Long = 0,
+    val amountShare: Long = 0,
+    val amountVisible: Long = 0
 ): Parcelable

@@ -64,9 +64,10 @@ class PostViewHolder(
             root.setOnClickListener { callback.onPost(post) }
             contentPosts.setOnClickListener { callback.onPost(post) }
 
-            if (post.video != null) groupVideo.visibility = View.VISIBLE
-            else groupVideo.visibility = View.GONE
+//            if (post.video != null) groupVideo.visibility = View.VISIBLE
+//            else groupVideo.visibility = View.GONE
 
+            groupVideo.visibility = View.GONE
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.menu_post)
