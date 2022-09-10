@@ -57,10 +57,10 @@ class FeedFragment : Fragment() {
             }
 
             override fun onVideo(post: Post) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                val shareIntent =
-                    Intent.createChooser(intent, getString(R.string.chooser_share_post))
-                startActivity(shareIntent)
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+//                val shareIntent =
+//                    Intent.createChooser(intent, getString(R.string.chooser_share_post))
+//                startActivity(shareIntent)
             }
 
             override fun onPost(post: Post) {

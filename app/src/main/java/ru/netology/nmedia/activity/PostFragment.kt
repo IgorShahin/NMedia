@@ -57,21 +57,23 @@ class PostFragment : Fragment() {
 
                     viewModel.shareById(post.id)
                 }
-                video.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    val shareIntent =
-                        Intent.createChooser(intent, getString(R.string.chooser_share_post))
-                    startActivity(shareIntent)
-                }
-                play.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    val shareIntent =
-                        Intent.createChooser(intent, getString(R.string.chooser_share_post))
-                    startActivity(shareIntent)
-                }
+//                video.setOnClickListener {
+//                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+//                    val shareIntent =
+//                        Intent.createChooser(intent, getString(R.string.chooser_share_post))
+//                    startActivity(shareIntent)
+//                }
+//                play.setOnClickListener {
+//                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+//                    val shareIntent =
+//                        Intent.createChooser(intent, getString(R.string.chooser_share_post))
+//                    startActivity(shareIntent)
+//                }
+//
+//                if (post.video != null) groupVideo.visibility = View.VISIBLE
+//                else groupVideo.visibility = View.GONE
 
-                if (post.video != null) groupVideo.visibility = View.VISIBLE
-                else groupVideo.visibility = View.GONE
+                groupVideo.visibility = View.GONE
 
                 menu.setOnClickListener {
                     PopupMenu(it.context, it).apply {
@@ -87,11 +89,14 @@ class PostFragment : Fragment() {
                                     viewModel.removeById(post.id)
                                     findNavController().navigateUp()
                                 }
-                                R.id.edit -> findNavController().navigate(R.id.action_postFragment_to_postHandlerFragment,
-                                    Bundle().apply {
-                                        textArg = post.content
-                                    }
-                                )
+                                R.id.edit -> {
+                                    findNavController().navigate(R.id.action_postFragment_to_postHandlerFragment,
+                                        Bundle().apply {
+                                            textArg = post.content
+                                        }
+                                    )
+                                    viewModel.edit(post)
+                                }
                             }
                             true
                         }
@@ -121,12 +126,9 @@ class PostFragment : Fragment() {
                         }
                     }.show()
                 }
-                viewModel.edit(post)
             }
         }
 
         return binding.root
     }
-
-
 }
